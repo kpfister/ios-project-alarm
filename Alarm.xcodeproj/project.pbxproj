@@ -63,6 +63,7 @@
 				1A0FB77E1CDD4F07006808D9 /* AppDelegate.swift */,
 				754580A61CEA62B30071F509 /* View */,
 				1A0FB7821CDD4F07006808D9 /* Main.storyboard */,
+				754580A71CEA63580071F509 /* SwitchTableViewCell.swift */,
 				1A0FB7BE1CE19229006808D9 /* DateHelper.swift */,
 				1A0FB7851CDD4F07006808D9 /* Assets.xcassets */,
 				1A0FB7871CDD4F07006808D9 /* LaunchScreen.storyboard */,
@@ -76,7 +77,6 @@
 			children = (
 				754580A41CEA62A80071F509 /* AlarmDetailTableViewController.swift */,
 				754580A21CEA62320071F509 /* AlarmListTableViewController.swift */,
-				754580A71CEA63580071F509 /* SwitchTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
