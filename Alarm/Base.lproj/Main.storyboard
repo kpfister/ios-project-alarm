@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cx7-Io-lNl">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -83,12 +83,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0S4-uU-LII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="333"/>
+            <point key="canvasLocation" x="962" y="333"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Title-->
         <scene sceneID="jcE-0a-gUW">
             <objects>
-                <tableViewController id="Ag4-ed-91g" sceneMemberID="viewController">
+                <tableViewController id="Ag4-ed-91g" customClass="AlarmDetailTableViewController" customModule="Alarm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vE3-EB-fdD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -157,6 +157,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNh-wN-Mwd">
                                                     <rect key="frame" x="277" y="7" width="46" height="30"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="enableButtonTapped:" destination="Ag4-ed-91g" eventType="touchUpInside" id="XGE-sW-hX9"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -177,6 +180,18 @@
                             <outlet property="delegate" destination="Ag4-ed-91g" id="6zM-Ze-if6"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="sfk-1c-bGU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jij-eK-Old">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Ag4-ed-91g" id="14b-DG-C31"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="alarmText" destination="2vr-BW-X2W" id="rOd-9k-Yku"/>
+                        <outlet property="datePicker" destination="625-au-k7O" id="4NC-PB-Fc7"/>
+                        <outlet property="enableAlarmButton" destination="cNh-wN-Mwd" id="e5b-ks-mZ4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7LH-tp-Mza" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,6 +217,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lhd-8m-a2E"/>
+        <segue reference="DLs-Dn-Qj8"/>
     </inferredMetricsTieBreakers>
 </document>

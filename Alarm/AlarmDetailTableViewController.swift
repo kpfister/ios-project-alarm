@@ -9,9 +9,51 @@
 import UIKit
 
 class AlarmDetailTableViewController: UITableViewController {
+    
+    
+    //MARK: - Outlets and Properties
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBOutlet weak var alarmText: UITextField!
+    
+    @IBOutlet weak var enableAlarmButton: UIButton!
+    
+    //MARK: - Life Cyle
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //MARK: - Actions
+    
+    
+    @IBAction func enableButtonTapped(sender: AnyObject) {
+    }
+    
+    
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -20,12 +62,7 @@ class AlarmDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+       // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
