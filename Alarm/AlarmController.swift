@@ -12,6 +12,8 @@ import UIKit // I dont need Foundation becauce UIkit comes with it.
 
 class AlarmController  {
     
+    static let sharedInstance = AlarmController() // This allows us to use this instance as a shared instance
+    
     var alarms: [Alarm] = []
     
     func addAlarm(fireTimeFromMidnight: NSTimeInterval, name: String) -> Alarm {

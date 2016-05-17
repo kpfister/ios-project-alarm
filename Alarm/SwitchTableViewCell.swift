@@ -7,9 +7,16 @@
 //
 
 import UIKit
+protocol AlarmCellDelegate {
+    func alarmValueChanged(cell: SwitchTableViewCell, isOn: Bool)
+}
+
 
 class SwitchTableViewCell: UITableViewCell {
-
+    
+    var delegate: AlarmCellDelegate?
+    var setting: Alarm?
+    
     //MARK: - Outlets
     
     
@@ -26,10 +33,19 @@ class SwitchTableViewCell: UITableViewCell {
     
     
     @IBAction func switchValueChanged(sender: AnyObject) {
+        
     }
     
     
     
+    //MARK: - functions of Cell
+    
+    func updateWithAlarm(alarm: Alarm) {
+        timeLabel.text = alarm.fireTimeAsString // Our timeLabel will be filled with text - and its coming from alarm.fireTimeString
+        nameLabel.text = alarm.name // out nameLabel will be
+        alarmSwitch.on = alarm.enabled
+        
+    }
     
     
 }

@@ -37,7 +37,7 @@ class Alarm: Equatable {
         }
     }
     
-    init(fireTimeFromMidnight: NSTimeInterval, name: String, enabled: Bool, uuid: String = NSUUID().UUIDString){
+    init(fireTimeFromMidnight: NSTimeInterval, name: String, enabled: Bool = true, uuid: String = NSUUID().UUIDString){
         self.fireTimeFromMidnight = fireTimeFromMidnight
         self.name = name
         self.enabled = enabled
