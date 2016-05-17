@@ -15,22 +15,42 @@ class Alarm: Equatable {
     var enabled: Bool
     var uuid: String
     
-    init(fireTimeFromMidnight: NSTimeInterval, name: String, enabled: Bool, uuid: String){
+    
+    var fireDate: NSDate? {
+        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
+            return nil
+        }
+        let fireTimeFromThisMOrning = NSDate(timeInterval: fireTimeFromMidnight, sinceDate: thisMorningAtMidnight)
+        return fireTimeFromThisMOrning
+    }
+    
+    var fireTimeAsString: String {
+      let fireTimeFromMidnight = Int(self.fireTimeFromMidnight)
+        let hours = (fireTimeFromMidnight/60)/60
+        let minutes = (fireTimeFromMidnight - (hours*60*60))/60
+        if hours >= 13 {
+            return String(format: "%2d: %02d PM", arguments: [hours - 12, minutes])
+        } else if hours >= 12 {
+            return String(format: "%2d: %02d PM", arguements: [hours, minutes])
+        } else {
+            return String(format: "%2d: %02d PM", arguments: [hours, minutes])
+        }
+    }
+    
+    init(fireTimeFromMidnight: NSTimeInterval, name: String, enabled: Bool, uuid: String = NSUUID().UUIDString){
         self.fireTimeFromMidnight = fireTimeFromMidnight
         self.name = name
-        self.enabled = true
-        self.uuid = NSUUID().UUIDString
+        self.enabled = enabled
+        self.uuid = uuid
         
-//        var fireDate: NSDate?
-//        
-//        get {
-//            return
-//        }
+        
     }
 }
 
+
+
 func ==(lhs:Alarm, rhs:Alarm) -> Bool {
-    return lhs.fireTimeFromMidnight == rhs.fireTimeFromMidnight && lhs.name == rhs.name && lhs.enabled == rhs.enabled && lhs.uuid == rhs.uuid
+    return lhs.uuid == rhs.uuid
 }
 
 
