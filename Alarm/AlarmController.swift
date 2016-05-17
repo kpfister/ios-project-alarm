@@ -10,7 +10,7 @@
 import UIKit // I dont need Foundation becauce UIkit comes with it.
 
 
-class AlarmController  {
+class AlarmController {
     
     static let sharedInstance = AlarmController() // This allows us to use this instance as a shared instance
     
@@ -35,6 +35,15 @@ class AlarmController  {
         alarms.removeAtIndex(index)
     }
     
+    func mockAlarms() -> [Alarm] {
+        
+        let alarm1 = Alarm(fireTimeFromMidnight: 30421, name:"Wake up", enabled:true)
+        return [alarm1]
+    }
+    
+    init() {
+        self.alarms = mockAlarms()
+    }
     
     
     

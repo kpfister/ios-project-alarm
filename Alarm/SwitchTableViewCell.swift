@@ -7,15 +7,11 @@
 //
 
 import UIKit
-protocol AlarmCellDelegate {
-    func alarmValueChanged(cell: SwitchTableViewCell, isOn: Bool)
-}
 
-
-class SwitchTableViewCell: UITableViewCell {
+class SwitchTableViewCell: UITableViewCell{
     
-    var delegate: AlarmCellDelegate?
-    var setting: Alarm?
+    weak var delegate: SwitchTableViewCellDelegate?
+    
     
     //MARK: - Outlets
     
@@ -34,6 +30,7 @@ class SwitchTableViewCell: UITableViewCell {
     
     @IBAction func switchValueChanged(sender: AnyObject) {
         
+        
     }
     
     
@@ -48,4 +45,19 @@ class SwitchTableViewCell: UITableViewCell {
     }
     
     
+} // End of Class
+
+protocol SwitchTableViewCellDelegate: class {
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
 }
+
+
+
+
+
+
+
+
+
+
+
