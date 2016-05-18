@@ -29,6 +29,7 @@ class AlarmDetailTableViewController: UITableViewController {
         if let alarm = alarm { // This unwraps alarm
             updateWithAlarm(alarm)
         }
+        AlarmController.sharedInstance.loadFromPersistentStorage()
         setupView()
     }
     
@@ -36,6 +37,7 @@ class AlarmDetailTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+        
     }
     
     func setupView() {
@@ -54,7 +56,8 @@ class AlarmDetailTableViewController: UITableViewController {
                 enableAlarmButton.backgroundColor = .greenColor()
             }
         }
-    
+        
+        
     }
     
     
@@ -79,7 +82,7 @@ class AlarmDetailTableViewController: UITableViewController {
         }
         AlarmController.sharedInstance.toggleEnabled(alarm)
         setupView()
-        }
+    }
     
     
     
@@ -88,27 +91,15 @@ class AlarmDetailTableViewController: UITableViewController {
             thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
                 return
         }
-        let timeIntervalSinceMidnight = datePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
+        let timeIntervalFromMidnight = datePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
         if let alarm = alarm {
-            AlarmController.sharedInstance.updateAlarm(alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
-        } else {
-            let alarm = AlarmController.sharedInstance.addAlarm(timeIntervalSinceMidnight, name: title)
-            self.alarm = alarm
+            AlarmController.sharedInstance.updateAlarm(alarm, fireTimeFromMidnight: timeIntervalFromMidnight, name: title) }
+        else {
+            AlarmController.sharedInstance.addAlarm(timeIntervalFromMidnight, name: title)
         }
-        self.navigationController?.popViewControllerAnimated(true)
-        
+        navigationController?.popViewControllerAnimated(true)
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

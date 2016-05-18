@@ -19,12 +19,14 @@ class AlarmController {
     func addAlarm(fireTimeFromMidnight: NSTimeInterval, name: String) -> Alarm {
         let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
         alarms.append(alarm)
+        saveToPersistentStorage()
         return alarm
     }
     
     func updateAlarm(alarm: Alarm, fireTimeFromMidnight: NSTimeInterval, name: String) {
         alarm.fireTimeFromMidnight = fireTimeFromMidnight
         alarm.name = name
+        saveToPersistentStorage()
     }
     
     func deleteAlarm(alarm: Alarm) {
@@ -33,23 +35,49 @@ class AlarmController {
                 return
         }
         alarms.removeAtIndex(index)
+        saveToPersistentStorage()
     }
     
     func toggleEnabled(alarm: Alarm) { // Copied from Master
         alarm.enabled = !alarm.enabled
+        saveToPersistentStorage()
     }
     
-    func mockAlarms() -> [Alarm] {
+    init () {
+        loadFromPersistentStorage()
+    }
+    
+//    func mockAlarms() -> [Alarm] {
+//        
+//        let alarm1 = Alarm(fireTimeFromMidnight: 30421, name:"Wake up", enabled:true)
+//        return [alarm1]
+//    }
+//    
+    
+    private let kAlarms = "alarms"
+    
+    func saveToPersistentStorage() {
+       NSKeyedArchiver.archiveRootObject(self.alarms, toFile: self.filePath(kAlarms))
+    }
+    
+    func loadFromPersistentStorage() {
+       NSKeyedUnarchiver.unarchiveObjectWithFile(self.filePath(kAlarms))
+        guard let alarms =
+            NSKeyedUnarchiver.unarchiveObjectWithFile(self.filePath(kAlarms)) as? [Alarm]
+            else {
+            return
+        }
+        self.alarms = alarms
+    }
+    
+    
+    func filePath(key: String) -> String {
+        let directorySearchResults = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true)
+        let documentsPath: AnyObject = directorySearchResults[0]
+        let entriesPath = documentsPath.stringByAppendingString("/\(key).plist")
         
-        let alarm1 = Alarm(fireTimeFromMidnight: 30421, name:"Wake up", enabled:true)
-        return [alarm1]
+        return entriesPath
     }
-    
-    init() {
-        self.alarms = mockAlarms()
-    }
-    
-    
     
     
     
