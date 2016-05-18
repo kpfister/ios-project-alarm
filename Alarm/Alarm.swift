@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Alarm: Equatable {
+class Alarm: Equatable{
     var fireTimeFromMidnight: NSTimeInterval
     var name: String
     var enabled: Bool

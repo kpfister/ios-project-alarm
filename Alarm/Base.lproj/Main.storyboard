@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cx7-Io-lNl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cx7-Io-lNl">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZ4-90-Caa" id="2PF-SC-Ign">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSx-lF-MpI">
@@ -41,6 +41,7 @@
                                             <rect key="frame" x="8" y="8" width="130" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="130" id="taU-hZ-6Hm"/>
+                                                <constraint firstAttribute="height" constant="30" id="vjW-5p-tpT"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,16 +49,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bSx-lF-MpI" secondAttribute="trailing" id="3uK-YS-dIB"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="uaw-BP-Tvg" secondAttribute="leading" id="7FN-HO-SPY"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="pY5-v8-YFK" secondAttribute="leading" id="Ey0-bw-wbm"/>
-                                        <constraint firstAttribute="topMargin" secondItem="uaw-BP-Tvg" secondAttribute="top" id="Yot-sN-t0k"/>
-                                        <constraint firstItem="bSx-lF-MpI" firstAttribute="top" secondItem="2PF-SC-Ign" secondAttribute="topMargin" constant="26" id="Z8p-9K-hF9"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="bSx-lF-MpI" secondAttribute="bottom" constant="26.5" id="c8c-D8-EAr"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="uaw-BP-Tvg" secondAttribute="bottom" constant="53.5" id="czy-Mp-4ke"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pY5-v8-YFK" secondAttribute="bottom" constant="7.5" id="d5I-cX-SWL"/>
-                                        <constraint firstItem="pY5-v8-YFK" firstAttribute="top" secondItem="2PF-SC-Ign" secondAttribute="topMargin" constant="46" id="hr9-H1-eI5"/>
-                                        <constraint firstItem="bSx-lF-MpI" firstAttribute="centerY" secondItem="2PF-SC-Ign" secondAttribute="centerY" id="rhK-mB-lat"/>
+                                        <constraint firstItem="uaw-BP-Tvg" firstAttribute="leading" secondItem="pY5-v8-YFK" secondAttribute="leading" id="GbQ-i4-dNC"/>
+                                        <constraint firstItem="pY5-v8-YFK" firstAttribute="top" secondItem="uaw-BP-Tvg" secondAttribute="bottom" constant="16" id="KfB-bW-Fxc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="pY5-v8-YFK" secondAttribute="bottom" constant="7.5" id="gis-hL-cIj"/>
+                                        <constraint firstItem="uaw-BP-Tvg" firstAttribute="leading" secondItem="2PF-SC-Ign" secondAttribute="leadingMargin" id="k4f-Sx-sMG"/>
+                                        <constraint firstItem="bSx-lF-MpI" firstAttribute="trailing" secondItem="2PF-SC-Ign" secondAttribute="trailingMargin" id="lnm-1w-ezW"/>
+                                        <constraint firstItem="uaw-BP-Tvg" firstAttribute="top" secondItem="2PF-SC-Ign" secondAttribute="topMargin" id="md3-z1-WNs"/>
+                                        <constraint firstItem="bSx-lF-MpI" firstAttribute="centerY" secondItem="2PF-SC-Ign" secondAttribute="centerY" id="woK-om-yvQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -103,7 +101,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="625-au-k7O">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="625-au-k7O">
                                                     <rect key="frame" x="8" y="0.0" width="576" height="200"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="485125048.65900302">
                                                         <!--2016-05-16 20:57:28 +0000-->
@@ -151,11 +149,11 @@
                                         <rect key="frame" x="0.0" y="415" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SL2-dh-VJT" id="jjX-Ki-3Ic">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNh-wN-Mwd">
-                                                    <rect key="frame" x="277" y="7" width="46" height="30"/>
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
                                                         <action selector="enableButtonTapped:" destination="Ag4-ed-91g" eventType="touchUpInside" id="XGE-sW-hX9"/>
@@ -163,12 +161,9 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="leading" secondItem="jjX-Ki-3Ic" secondAttribute="leadingMargin" constant="269" id="2le-zH-uAi"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="cNh-wN-Mwd" secondAttribute="trailing" constant="269" id="3MG-t5-70A"/>
-                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="centerX" secondItem="jjX-Ki-3Ic" secondAttribute="centerX" id="FVp-AQ-QC7"/>
-                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="top" secondItem="jjX-Ki-3Ic" secondAttribute="topMargin" constant="-1" id="KAQ-wT-Esw"/>
-                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="centerY" secondItem="jjX-Ki-3Ic" secondAttribute="centerY" id="PRB-Hf-Q9t"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="cNh-wN-Mwd" secondAttribute="bottom" constant="-1.5" id="tcq-9i-nLp"/>
+                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="trailing" secondItem="jjX-Ki-3Ic" secondAttribute="trailingMargin" id="RVX-cP-STv"/>
+                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="leading" secondItem="jjX-Ki-3Ic" secondAttribute="leadingMargin" id="S2D-gw-YDi"/>
+                                                <constraint firstItem="cNh-wN-Mwd" firstAttribute="centerY" secondItem="jjX-Ki-3Ic" secondAttribute="centerY" id="sH6-hp-VWH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

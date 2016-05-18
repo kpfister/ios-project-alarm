@@ -32,6 +32,11 @@ class AlarmDetailTableViewController: UITableViewController {
         setupView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
     
     func setupView() {
         
@@ -41,15 +46,15 @@ class AlarmDetailTableViewController: UITableViewController {
             enableAlarmButton.hidden = false // if the alarm is off, show the enable button
             if alarm?.enabled == true {
                 enableAlarmButton.setTitle("Disable", forState: .Normal)
-                enableAlarmButton.setTitleColor(.magentaColor(), forState: .Normal)
-                enableAlarmButton.backgroundColor = .greenColor()
+                enableAlarmButton.setTitleColor(.blackColor(), forState: .Normal)
+                enableAlarmButton.backgroundColor = .redColor()
             } else {
                 enableAlarmButton.setTitle("Enable", forState: .Normal)
-                enableAlarmButton.setTitleColor(.blueColor(), forState: .Normal)
-                enableAlarmButton.backgroundColor = .darkGrayColor()
+                enableAlarmButton.setTitleColor(.blackColor(), forState: .Normal)
+                enableAlarmButton.backgroundColor = .greenColor()
             }
         }
-        
+    
     }
     
     
@@ -69,7 +74,13 @@ class AlarmDetailTableViewController: UITableViewController {
     
     
     @IBAction func enableButtonTapped(sender: AnyObject) {
-    }
+        guard let alarm = alarm else {
+            return
+        }
+        AlarmController.sharedInstance.toggleEnabled(alarm)
+        setupView()
+        }
+    
     
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
@@ -84,6 +95,7 @@ class AlarmDetailTableViewController: UITableViewController {
             let alarm = AlarmController.sharedInstance.addAlarm(timeIntervalSinceMidnight, name: title)
             self.alarm = alarm
         }
+        self.navigationController?.popViewControllerAnimated(true)
         
     }
 }

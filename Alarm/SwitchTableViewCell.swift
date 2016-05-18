@@ -39,7 +39,7 @@ class SwitchTableViewCell: UITableViewCell{
     
     func updateWithAlarm(alarm: Alarm) {
         timeLabel.text = alarm.fireTimeAsString // Our timeLabel will be filled with text - and its coming from alarm.fireTimeString
-        nameLabel.text = alarm.name // out nameLabel will be
+        nameLabel.text = alarm.name // our nameLabel will be
         alarmSwitch.on = alarm.enabled
         
     }
