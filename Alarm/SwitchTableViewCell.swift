@@ -30,7 +30,7 @@ class SwitchTableViewCell: UITableViewCell{
     
     @IBAction func switchValueChanged(sender: AnyObject) {
         
-        
+        delegate?.switchCellSwitchValueChanged(self)
     }
     
     

@@ -35,6 +35,10 @@ class AlarmController {
         alarms.removeAtIndex(index)
     }
     
+    func toggleEnabled(alarm: Alarm) { // Copied from Master
+        alarm.enabled = !alarm.enabled
+    }
+    
     func mockAlarms() -> [Alarm] {
         
         let alarm1 = Alarm(fireTimeFromMidnight: 30421, name:"Wake up", enabled:true)

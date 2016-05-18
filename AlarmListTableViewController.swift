@@ -55,37 +55,32 @@ class AlarmListTableViewController: UITableViewController {
         }
     }
     
-        /*
-         // Override to support rearranging the table view.
-         override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-         
-         }
-         */
+       
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        /*
-         // Override to support conditional rearranging of the table view.
-         override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-         // Return false if you do not want the item to be re-orderable.
-         return true
-         }
-         */
-        
-        /*
-         // MARK: - Navigation
+        let detailViewController = segue.destinationViewController as? AlarmDetailTableViewController
+        if segue.identifier == "toDetailView" {
+            guard let indexPath = tableView.indexPathForSelectedRow
+                else {
+                    return
+                }
+                let alarm = AlarmController.sharedInstance.alarms[indexPath.row]
+                detailViewController?.alarm = alarm
+            }
+            
          
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-         // Get the new view controller using segue.destinationViewController.
-         // Pass the selected object to the new view controller.
-         }
-         */
         
     }
     
-    // MARK: - SwitchTableViewCell delegate methods
-    extension AlarmListTableViewController: SwitchTableViewCellDelegate {
+    
+}
+
+// MARK: - SwitchTableViewCell delegate methods
+extension AlarmListTableViewController: SwitchTableViewCellDelegate {
+    
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
         
-        func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
-            
-        }
+    }
 }

@@ -64,7 +64,7 @@
                                     <outlet property="alarmSwitch" destination="bSx-lF-MpI" id="6tT-mt-4v2"/>
                                     <outlet property="nameLabel" destination="pY5-v8-YFK" id="HJd-MB-F9F"/>
                                     <outlet property="timeLabel" destination="uaw-BP-Tvg" id="RwD-Vs-N8p"/>
-                                    <segue destination="Ag4-ed-91g" kind="show" id="DLs-Dn-Qj8"/>
+                                    <segue destination="Ag4-ed-91g" kind="show" identifier="toDetailView" id="DLs-Dn-Qj8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -76,7 +76,7 @@
                     <navigationItem key="navigationItem" id="j3C-Lu-ZXp">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9Id-05-Lop">
                             <connections>
-                                <segue destination="Ag4-ed-91g" kind="show" id="Lhd-8m-a2E"/>
+                                <segue destination="Ag4-ed-91g" kind="show" identifier="addAlarm" id="Lhd-8m-a2E"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

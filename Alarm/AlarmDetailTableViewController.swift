@@ -10,6 +10,8 @@ import UIKit
 
 class AlarmDetailTableViewController: UITableViewController {
     
+    var alarm: Alarm?
+    
     
     //MARK: - Outlets and Properties
     
@@ -22,11 +24,45 @@ class AlarmDetailTableViewController: UITableViewController {
     //MARK: - Life Cyle
     
     
+    override func viewDidLoad() { // Copied from master. I was unsure how to unwrap the alarm...
+        super.viewDidLoad()
+        if let alarm = alarm { // This unwraps alarm
+            updateWithAlarm(alarm)
+        }
+        setupView()
+    }
     
     
+    func setupView() {
+        
+        if alarm == nil { // if alarm is equal to nil ( not on? )
+            enableAlarmButton.hidden = true // hide the enable button
+        } else {
+            enableAlarmButton.hidden = false // if the alarm is off, show the enable button
+            if alarm?.enabled == true {
+                enableAlarmButton.setTitle("Disable", forState: .Normal)
+                enableAlarmButton.setTitleColor(.magentaColor(), forState: .Normal)
+                enableAlarmButton.backgroundColor = .greenColor()
+            } else {
+                enableAlarmButton.setTitle("Enable", forState: .Normal)
+                enableAlarmButton.setTitleColor(.blueColor(), forState: .Normal)
+                enableAlarmButton.backgroundColor = .darkGrayColor()
+            }
+        }
+        
+    }
     
     
-    
+    func updateWithAlarm(alarm: Alarm) {
+        
+        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
+            return
+        }
+        datePicker.setDate(NSDate(timeInterval: alarm.fireTimeFromMidnight, sinceDate: thisMorningAtMidnight), animated: false) // ^ and below copied from master.
+        alarmText.text = alarm.name
+        self.title = alarm.name
+        
+    }
     
     
     //MARK: - Actions
@@ -37,96 +73,30 @@ class AlarmDetailTableViewController: UITableViewController {
     
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        guard let title = alarmText.text,
+            thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
+                return
+        }
+        let timeIntervalSinceMidnight = datePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
+        if let alarm = alarm {
+            AlarmController.sharedInstance.updateAlarm(alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
+        } else {
+            let alarm = AlarmController.sharedInstance.addAlarm(timeIntervalSinceMidnight, name: title)
+            self.alarm = alarm
+        }
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-       // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
