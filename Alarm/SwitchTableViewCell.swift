@@ -9,7 +9,30 @@
 import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
+    
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var alarmSwitch: UISwitch!
+    
+    
+    // MARK: Actions
 
+    @IBAction func switchValueChanged(sender: AnyObject) {
+        // This is where the Protocol will go.
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
