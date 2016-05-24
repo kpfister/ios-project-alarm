@@ -10,8 +10,7 @@ import UIKit
 
 class AlarmDetailTableViewController: UITableViewController {
     
-    
-    
+    var alarm: Alarm?
     
     
     // MARK: Outlets - 
@@ -34,16 +33,43 @@ class AlarmDetailTableViewController: UITableViewController {
     
     
     
+    func updateWithAlarm(alarm: Alarm) {
+        guard let unwrappedFireDate = alarm.fireDate else {
+            return
+        }
+        
+        datePicker.date = unwrappedFireDate
+        alarmTextName.text = alarm.name
+        
+    }
+
+    func setUpView() {
+        if alarm == nil {
+            enableButton.hidden = true
+        } else {
+            enableButton.hidden = false
+            if alarm?.enabled == true {
+                enableButton.setTitle("Disable", forState: .Normal)
+                enableButton.setTitleColor(.whiteColor(), forState: .Normal)
+                enableButton.backgroundColor = .redColor()
+            } else {
+                enableButton.setTitle("Enable", forState: .Normal)
+                enableButton.setTitleColor(.blackColor(), forState: .Normal)
+                enableButton.backgroundColor = .greenColor()
+                
+            }
+        }
+    }
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        if let alarm = self.alarm { // This is unwrapped
+            updateWithAlarm(alarm)
+        }
+        setUpView()
     }
 
     override func didReceiveMemoryWarning() {
