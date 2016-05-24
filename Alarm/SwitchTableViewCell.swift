@@ -10,8 +10,10 @@ import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
     
+    weak var delegate: SwitchTableViewCellDelegate?
+
     
-    // MARK: Outlets
+       // MARK: Outlets
     
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -24,24 +26,21 @@ class SwitchTableViewCell: UITableViewCell {
 
     @IBAction func switchValueChanged(sender: AnyObject) {
         // This is where the Protocol will go.
+        delegate?.switchCellSwitchValueChanged(self) //Update the switchValueChanged IBAction to check if a delegate is assigned, and if so, call the delegate protocol function  
     }
     
     
     
-    
-    
-    
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func updateWithAlarm(alarm: Alarm) {
+        timeLabel.text = alarm.fireTimeAsString
+        nameLabel.text = alarm.name
+        alarmSwitch.on = alarm.enabled
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
+
+protocol SwitchTableViewCellDelegate: class { // Protocol goes outside of the class
+    func switchCellSwitchValueChanged(Cell: SwitchTableViewCell)
+    
+}
+
