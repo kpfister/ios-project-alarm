@@ -9,6 +9,7 @@
 import Foundation
 
 class Alarm: NSObject, NSCoding {
+    
     private let kFireTimeFromMidnight = "fireTimeFromMidnight"
     private let kName = "name"
     private let kEnabled = "enabled"
