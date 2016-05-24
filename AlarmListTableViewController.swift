@@ -34,7 +34,7 @@ class AlarmListTableViewController: UITableViewController,SwitchTableViewCellDel
         let alarm = AlarmController.sharedInstance.alarms[indexPath.row]
         
         cell.updateWithAlarm(alarm)
-        
+        cell.delegate = self
         
         return cell
     }

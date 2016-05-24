@@ -41,6 +41,6 @@ class SwitchTableViewCell: UITableViewCell {
 
 protocol SwitchTableViewCellDelegate: class { // Protocol goes outside of the class
     func switchCellSwitchValueChanged(Cell: SwitchTableViewCell)
-    
+
 }
 

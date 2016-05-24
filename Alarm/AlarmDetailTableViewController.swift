@@ -36,6 +36,7 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
             cancelLocalNotification(alarm)
         }
         setUpView()
+        
     }
     
     
