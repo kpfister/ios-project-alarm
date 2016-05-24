@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController,SwitchTableViewCellDelegate {
+class AlarmListTableViewController: UITableViewController,SwitchTableViewCellDelegate, AlarmScheduler {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +52,22 @@ class AlarmListTableViewController: UITableViewController,SwitchTableViewCellDel
         guard let indexPath = tableView.indexPathForCell(cell) else {return}
         let alarm = AlarmController.sharedInstance.alarms[indexPath.row]
         AlarmController.sharedInstance.toggleEnabled(alarm)
+        if alarm.enabled {
+            scheduleLocalNotification(alarm)
+        } else {
+            cancelLocalNotification(alarm)
+        }
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        
     }
-    
+        
     
     
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "alarmCell" {
+        if segue.identifier == "toTableView" {
             let destinationVC = segue.destinationViewController as? AlarmDetailTableViewController
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             let alarm = AlarmController.sharedInstance.alarms[indexPath.row]

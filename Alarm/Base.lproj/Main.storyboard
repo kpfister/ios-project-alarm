@@ -146,7 +146,7 @@
                                         <rect key="frame" x="0.0" y="493" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I96-8u-X85" id="VKt-YD-qgH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QD-mg-JSR">
@@ -158,9 +158,9 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0QD-mg-JSR" firstAttribute="leading" secondItem="VKt-YD-qgH" secondAttribute="leadingMargin" id="BlA-zr-Dn1"/>
-                                                <constraint firstItem="0QD-mg-JSR" firstAttribute="centerY" secondItem="VKt-YD-qgH" secondAttribute="centerY" id="aaq-uw-j0n"/>
-                                                <constraint firstItem="0QD-mg-JSR" firstAttribute="trailing" secondItem="VKt-YD-qgH" secondAttribute="trailingMargin" id="gJ6-lb-byw"/>
+                                                <constraint firstItem="0QD-mg-JSR" firstAttribute="trailing" secondItem="VKt-YD-qgH" secondAttribute="trailingMargin" id="8Wa-Q4-qi3"/>
+                                                <constraint firstItem="0QD-mg-JSR" firstAttribute="centerY" secondItem="VKt-YD-qgH" secondAttribute="centerY" id="a1K-qv-aB1"/>
+                                                <constraint firstItem="0QD-mg-JSR" firstAttribute="leading" secondItem="VKt-YD-qgH" secondAttribute="leadingMargin" id="wRK-TS-miw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

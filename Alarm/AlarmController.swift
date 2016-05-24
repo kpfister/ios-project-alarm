@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class AlarmController {
@@ -14,7 +15,7 @@ class AlarmController {
     static let sharedInstance = AlarmController()
     
     private let kAlarms = "alarms"
-
+    
     var alarms: [Alarm] = [] // Add an alarms array property with an empty array as a default value
     
     init () {
@@ -24,6 +25,7 @@ class AlarmController {
     func addAlarm(fireTimeFromMidnight: NSTimeInterval, name: String) -> Alarm {
         let newAlarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
         alarms.append(newAlarm)
+        saveToPersistentStorage()
         return newAlarm
     }
     
@@ -43,7 +45,7 @@ class AlarmController {
     func toggleEnabled(alarm: Alarm) {
         alarm.enabled = !alarm.enabled
     }
-
+    
     func saveToPersistentStorage() {
         NSKeyedArchiver.archiveRootObject(self.alarms, toFile: self.filePath(kAlarms))
     }
@@ -63,4 +65,43 @@ class AlarmController {
     }
     
     
+}
+
+
+protocol AlarmScheduler {
+    
+    func scheduleLocalNotification(alarm: Alarm)
+    
+    func cancelLocalNotification(alarm: Alarm)
+    
+}
+
+
+extension AlarmScheduler {
+    
+    func scheduleLocalNotification(alarm: Alarm){
+        let localNotification = UILocalNotification()
+        
+        localNotification.alertTitle = "New Alert"
+        localNotification.alertBody = "Your alarm is ready"
+        localNotification.fireDate = alarm.fireDate
+        localNotification.category = alarm.uuid
+        localNotification.repeatInterval = .Day
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    func cancelLocalNotification(alarm: Alarm) {
+        // Get an array of all the notifications
+        guard let scheduledLocalNotifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        // Do a for in loop for each notification in the array
+        for notification in scheduledLocalNotifications {
+            // Do an if statement inside of the for in loop to see if the notification.category == alarm.uuid
+            if notification.category == alarm.uuid {
+                // cancel that notification inside the if
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+            }
+        }
+        
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmDetailTableViewController: UITableViewController {
+class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
     
     var alarm: Alarm?
     
@@ -30,6 +30,11 @@ class AlarmDetailTableViewController: UITableViewController {
             return
         }
         AlarmController.sharedInstance.toggleEnabled(alarm)
+        if alarm.enabled {
+            scheduleLocalNotification(alarm)
+        } else {
+            cancelLocalNotification(alarm)
+        }
         setUpView()
     }
     
@@ -41,9 +46,12 @@ class AlarmDetailTableViewController: UITableViewController {
         let timeIntervalSinceMidnight = datePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
         if let alarm = alarm {
             AlarmController.sharedInstance.updateAlarm(alarm, firetimeFromMidnight: timeIntervalSinceMidnight, name: title)
+            cancelLocalNotification(alarm)
+            scheduleLocalNotification(alarm)
         } else {
             let alarm = AlarmController.sharedInstance.addAlarm(timeIntervalSinceMidnight, name: title)
             self.alarm = alarm
+            scheduleLocalNotification(alarm)
         }
         self.navigationController?.popViewControllerAnimated(true)
         
@@ -83,34 +91,10 @@ class AlarmDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let alarm = self.alarm { // This is unwrapped
             updateWithAlarm(alarm)
         }
         setUpView()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
-    
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1 // I may not want this
-    }
-    
-    /*
-     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
     
 }
